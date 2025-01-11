@@ -19,6 +19,14 @@ func main() {
 	win := must.Must(gtk.WindowNew(gtk.WINDOW_TOPLEVEL))
 	cfg := config.Resolve()
 
+	// Properly handle transparency.
+	win.SetAppPaintable(true)
+	screen := win.GetScreen()
+	visual, err := screen.GetRGBAVisual()
+	if err == nil {
+		win.SetVisual(visual)
+	}
+
 	// Initialize layershell for window.
 	layershell.InitForWindow(win)
 	layershell.SetNamespace(win, "powermenu")
