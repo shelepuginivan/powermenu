@@ -45,6 +45,7 @@ func main() {
 	widget.OnEscape(gtk.MainQuit)
 
 	// Configure window.
+	win.SetName("powermenu")
 	win.SetTitle("powermenu")
 	win.Connect("destroy", gtk.MainQuit)
 	win.Connect("key-press-event", widget.OnKeyPress)
