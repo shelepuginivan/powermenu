@@ -29,6 +29,15 @@ type CommandsConfig struct {
 	Reboot    Command `yaml:"reboot"`
 }
 
+type IconsConfig struct {
+	Lock      string `yaml:"lock"`
+	Logout    string `yaml:"logout"`
+	Suspend   string `yaml:"suspend"`
+	Hibernate string `yaml:"hibernate"`
+	PowerOff  string `yaml:"poweroff"`
+	Reboot    string `yaml:"reboot"`
+}
+
 // Config represents configuration for powermenu.
 type Config struct {
 	// gtk-layer-shell anchors.
@@ -39,4 +48,7 @@ type Config struct {
 
 	// Power management commands.
 	Commands CommandsConfig `yaml:"commands"`
+
+	// Icons for power management options.
+	Icons IconsConfig `yaml:"icons"`
 }
