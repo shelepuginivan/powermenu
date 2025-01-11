@@ -20,35 +20,27 @@ type Command struct {
 	Args []string `yaml:"args"`
 }
 
-type CommandsConfig struct {
-	Lock      Command `yaml:"lock"`
-	Logout    Command `yaml:"logout"`
-	Suspend   Command `yaml:"suspend"`
-	Hibernate Command `yaml:"hibernate"`
-	PowerOff  Command `yaml:"poweroff"`
-	Reboot    Command `yaml:"reboot"`
-}
+type Option struct {
+	Command *Command `yaml:"command"`
+	Enabled bool     `yaml:"enabled"`
+	Icon    string   `yaml:"icon"`
+	Order   int      `yaml:"order"`
 
-type IconsConfig struct {
-	Lock      string `yaml:"lock"`
-	Logout    string `yaml:"logout"`
-	Suspend   string `yaml:"suspend"`
-	Hibernate string `yaml:"hibernate"`
-	PowerOff  string `yaml:"poweroff"`
-	Reboot    string `yaml:"reboot"`
+	GetDefaultIcon func() []byte
 }
 
 // Config represents configuration for powermenu.
 type Config struct {
 	// gtk-layer-shell anchors.
-	Anchors AnchorsConfig `yaml:"anchors"`
+	Anchors *AnchorsConfig `yaml:"anchors"`
 
 	// gtk-layer-shell margins.
-	Margins MarginsConfig `yaml:"margins"`
+	Margins *MarginsConfig `yaml:"margins"`
 
-	// Power management commands.
-	Commands CommandsConfig `yaml:"commands"`
-
-	// Icons for power management options.
-	Icons IconsConfig `yaml:"icons"`
+	Lock      *Option `yaml:"lock"`
+	Logout    *Option `yaml:"logout"`
+	Suspend   *Option `yaml:"suspend"`
+	Hibernate *Option `yaml:"hibernate"`
+	PowerOff  *Option `yaml:"poweroff"`
+	Reboot    *Option `yaml:"reboot"`
 }
