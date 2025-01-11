@@ -6,6 +6,7 @@ import (
 	"github.com/dlasky/gotk3-layershell/layershell"
 	"github.com/gotk3/gotk3/gtk"
 	"github.com/shelepuginivan/powermenu/config"
+	"github.com/shelepuginivan/powermenu/styles"
 )
 
 func main() {
@@ -38,6 +39,9 @@ func main() {
 	// Configure window.
 	win.SetTitle("powermenu")
 	win.Connect("destroy", gtk.MainQuit)
+
+	// Load application CSS.
+	styles.Load()
 
 	// Create a new label widget to show in the window.
 	l, err := gtk.LabelNew("Hello, gotk3!")
