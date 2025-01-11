@@ -41,6 +41,13 @@ func New() (*Widget, error) {
 		total:  0,
 	}
 
+	ctx, err := w.GetStyleContext()
+	if err != nil {
+		return nil, err
+	}
+
+	ctx.AddClass("container")
+
 	return w, nil
 }
 
