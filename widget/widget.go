@@ -41,12 +41,16 @@ func New() (*Widget, error) {
 
 // Increment increments index of the active option.
 func (w *Widget) Increment() {
+	w.unmarkActive()
 	w.active = (w.active + 1) % w.total
+	w.markActive()
 }
 
 // Decrement decrements index of the active option.
 func (w *Widget) Decrement() {
+	w.unmarkActive()
 	w.active = (w.active + w.total - 1) % w.total
+	w.markActive()
 }
 
 func (w *Widget) OnEscape(cb func()) {
@@ -57,12 +61,34 @@ func (w *Widget) SetActive(i int) {
 	w.active = max(min(i, w.total-1), 0)
 }
 
+func (w *Widget) markActive() {
+	ctx, err := w.children[w.active].GetStyleContext()
+	if err != nil {
+		return
+	}
+
+	ctx.AddClass("active")
+}
+
+func (w *Widget) unmarkActive() {
+	ctx, err := w.children[w.active].GetStyleContext()
+	if err != nil {
+		return
+	}
+
+	ctx.RemoveClass("active")
+}
+
 func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	w.total++
 	w.PackEnd(img, true, true, 0)
 
 	w.children = append(w.children, img)
 	w.commands = append(w.commands, cmd)
+
+	if w.total == 1 {
+		w.markActive()
+	}
 }
 
 func (w *Widget) ExecuteCommand() {
