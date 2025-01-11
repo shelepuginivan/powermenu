@@ -3,6 +3,7 @@ package widget
 
 import (
 	"os/exec"
+	"sync"
 
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"
@@ -11,6 +12,8 @@ import (
 
 type Widget struct {
 	*gtk.Box
+
+	mu sync.Mutex
 
 	// Index of the active option.
 	active int
@@ -41,6 +44,9 @@ func New() (*Widget, error) {
 
 // Increment increments index of the active option.
 func (w *Widget) Increment() {
+	w.mu.Lock()
+	defer w.mu.Unlock()
+
 	w.unmarkActive()
 	w.active = (w.active + 1) % w.total
 	w.markActive()
@@ -48,6 +54,9 @@ func (w *Widget) Increment() {
 
 // Decrement decrements index of the active option.
 func (w *Widget) Decrement() {
+	w.mu.Lock()
+	defer w.mu.Unlock()
+
 	w.unmarkActive()
 	w.active = (w.active + w.total - 1) % w.total
 	w.markActive()
@@ -58,7 +67,12 @@ func (w *Widget) OnEscape(cb func()) {
 }
 
 func (w *Widget) SetActive(i int) {
+	w.mu.Lock()
+	defer w.mu.Unlock()
+
+	w.unmarkActive()
 	w.active = max(min(i, w.total-1), 0)
+	w.markActive()
 }
 
 func (w *Widget) markActive() {
