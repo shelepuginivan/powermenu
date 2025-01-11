@@ -19,7 +19,7 @@ func Resolve() Config {
 		return defaultConfig
 	}
 
-	var config Config
+	config := defaultConfig
 
 	if yaml.Unmarshal(configBytes, &config) != nil {
 		return defaultConfig
