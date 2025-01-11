@@ -30,7 +30,7 @@ type Widget struct {
 
 // New returns new power menu widget.
 func New() (*Widget, error) {
-	box, err := gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 12)
+	box, err := gtk.BoxNew(gtk.ORIENTATION_HORIZONTAL, 0)
 	if err != nil {
 		return nil, err
 	}
@@ -50,6 +50,17 @@ func New() (*Widget, error) {
 	ctx.AddClass("container")
 
 	return w, nil
+}
+
+// SetOrientationFromString sets orientation of the underlying [gtk.Box],
+// typically from a configuration file.
+func (w *Widget) SetOrientationFromString(o string) {
+	switch o {
+	case "h", "horizontal":
+		w.SetOrientation(gtk.ORIENTATION_HORIZONTAL)
+	case "v", "vertical":
+		w.SetOrientation(gtk.ORIENTATION_VERTICAL)
+	}
 }
 
 // Increment increments index of the active option.
