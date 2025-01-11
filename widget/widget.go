@@ -110,7 +110,7 @@ func (w *Widget) unmarkActive() {
 // AddOption adds option to the [Widget].
 func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	w.total++
-	w.PackEnd(img, true, true, 0)
+	w.PackStart(img, true, true, 0)
 
 	w.children = append(w.children, img)
 	w.commands = append(w.commands, cmd)
