@@ -5,36 +5,39 @@ import (
 
 	"github.com/dlasky/gotk3-layershell/layershell"
 	"github.com/gotk3/gotk3/gtk"
+	"github.com/shelepuginivan/powermenu/config"
 )
 
 func main() {
 	// Initialize GTK without parsing any command line arguments.
 	gtk.Init(nil)
 
-	// Create a new toplevel window, set its title, and connect it to the
-	// "destroy" signal to exit the GTK main loop when it is destroyed.
 	win, err := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	if err != nil {
 		log.Fatal("Unable to create window:", err)
 	}
+
+	config := config.Resolve()
+
+	// Initialize layershell for window.
 	layershell.InitForWindow(win)
-	layershell.SetNamespace(win, "gtk-layer-shell")
+	layershell.SetNamespace(win, "powermenu")
 
-	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_LEFT, true)
-	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_TOP, true)
-	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_RIGHT, true)
+	// Set anchors based on the resolved configuration.
+	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_TOP, config.Anchors.Top)
+	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_LEFT, config.Anchors.Left)
+	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_RIGHT, config.Anchors.Right)
+	layershell.SetAnchor(win, layershell.LAYER_SHELL_EDGE_BOTTOM, config.Anchors.Bottom)
 
-	layershell.SetLayer(win, layershell.LAYER_SHELL_LAYER_BOTTOM)
-	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_TOP, 0)
-	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_LEFT, 0)
-	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_RIGHT, 0)
+	// Set margins based on the resolved configuration.
+	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_TOP, config.Margins.Top)
+	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_LEFT, config.Margins.Left)
+	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_RIGHT, config.Margins.Right)
+	layershell.SetMargin(win, layershell.LAYER_SHELL_EDGE_BOTTOM, config.Margins.Bottom)
 
-	layershell.SetExclusiveZone(win, 200)
-
-	win.SetTitle("Simple Example")
-	win.Connect("destroy", func() {
-		gtk.MainQuit()
-	})
+	// Configure window.
+	win.SetTitle("powermenu")
+	win.Connect("destroy", gtk.MainQuit)
 
 	// Create a new label widget to show in the window.
 	l, err := gtk.LabelNew("Hello, gotk3!")
@@ -51,7 +54,7 @@ func main() {
 	// Recursively show all widgets contained in this window.
 	win.ShowAll()
 
-	// Begin executing the GTK main loop.  This blocks until
-	// gtk.MainQuit() is run.
+	// Begin executing the GTK main loop.
+	// This blocks until gtk.MainQuit() is run.
 	gtk.Main()
 }
