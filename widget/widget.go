@@ -154,9 +154,9 @@ func (w *Widget) OnKeyPress(_ interface{}, ev *gdk.Event) {
 	switch event.KeyVal() {
 	case gdk.KEY_Escape:
 		w.onEscape()
-	case gdk.KEY_Left, gdk.KEY_h:
+	case gdk.KEY_Left, gdk.KEY_Up, gdk.KEY_h, gdk.KEY_k:
 		w.Decrement()
-	case gdk.KEY_Right, gdk.KEY_l:
+	case gdk.KEY_Right, gdk.KEY_Down, gdk.KEY_j, gdk.KEY_l:
 		w.Increment()
 	case gdk.KEY_1:
 		w.SetActive(0)
