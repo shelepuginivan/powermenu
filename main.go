@@ -50,6 +50,8 @@ func main() {
 
 	// Create a new label widget to show in the window.
 	widget := must.Must(widget.New())
+	widget.SetSpacing(cfg.Layout.Spacing)
+	widget.SetOrientationFromString(cfg.Layout.Orientation)
 	widget.OnEscape(gtk.MainQuit)
 
 	// Configure window.
