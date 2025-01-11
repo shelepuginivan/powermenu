@@ -46,6 +46,7 @@ func New() (*Widget, error) {
 		return nil, err
 	}
 
+	w.SetName("container")
 	ctx.AddClass("container")
 
 	return w, nil
@@ -112,6 +113,7 @@ func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	w.total++
 	w.PackStart(img, true, true, 0)
 
+	img.SetName("image")
 	w.children = append(w.children, img)
 	w.commands = append(w.commands, cmd)
 
