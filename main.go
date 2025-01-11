@@ -74,9 +74,6 @@ func main() {
 	// Allow keyboard input.
 	layershell.SetKeyboardMode(win, layershell.LAYER_SHELL_KEYBOARD_MODE_ON_DEMAND)
 
-	// Set the default window size.
-	win.SetDefaultSize(800, 30)
-
 	// Recursively show all widgets contained in this window.
 	win.ShowAll()
 
