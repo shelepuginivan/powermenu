@@ -8,6 +8,11 @@ type AnchorsConfig struct {
 	Right  bool `yaml:"right"`
 }
 
+type LayoutConfig struct {
+	Spacing     int    `yaml:"spacing"`
+	Orientation string `yaml:"orientation"`
+}
+
 type MarginsConfig struct {
 	Top    int `yaml:"top"`
 	Bottom int `yaml:"bottom"`
@@ -36,6 +41,9 @@ type Config struct {
 
 	// gtk-layer-shell margins.
 	Margins *MarginsConfig `yaml:"margins"`
+
+	// Power menu layout.
+	Layout *LayoutConfig `yaml:"layout"`
 
 	Lock      *Option `yaml:"lock"`
 	Logout    *Option `yaml:"logout"`

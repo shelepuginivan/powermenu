@@ -21,6 +21,10 @@ var defaultConfig = Config{
 		Right:  0,
 		Bottom: 0,
 	},
+	Layout: &LayoutConfig{
+		Spacing:     12,
+		Orientation: "horizontal",
+	},
 	Hibernate: &Option{
 		Command: &Command{
 			Name: "systemctl",
