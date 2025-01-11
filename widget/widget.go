@@ -10,6 +10,8 @@ import (
 	"github.com/shelepuginivan/powermenu/config"
 )
 
+// Widget is the core widget of powermenu that provides power management
+// options and handles keyboard input.
 type Widget struct {
 	*gtk.Box
 
@@ -62,10 +64,6 @@ func (w *Widget) Decrement() {
 	w.markActive()
 }
 
-func (w *Widget) OnEscape(cb func()) {
-	w.onEscape = cb
-}
-
 func (w *Widget) SetActive(i int) {
 	w.mu.Lock()
 	defer w.mu.Unlock()
@@ -75,6 +73,13 @@ func (w *Widget) SetActive(i int) {
 	w.markActive()
 }
 
+// OnEscape sets callback that is triggered when Escape is pressed.
+func (w *Widget) OnEscape(cb func()) {
+	w.onEscape = cb
+}
+
+// markActive marks the current option as active by adding the respective CSS
+// class.
 func (w *Widget) markActive() {
 	ctx, err := w.children[w.active].GetStyleContext()
 	if err != nil {
@@ -84,6 +89,8 @@ func (w *Widget) markActive() {
 	ctx.AddClass("active")
 }
 
+// unmarkActive unmarks the current option as active by removing the respective
+// CSS class.
 func (w *Widget) unmarkActive() {
 	ctx, err := w.children[w.active].GetStyleContext()
 	if err != nil {
@@ -93,6 +100,7 @@ func (w *Widget) unmarkActive() {
 	ctx.RemoveClass("active")
 }
 
+// AddOption adds option to the [Widget].
 func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	w.total++
 	w.PackEnd(img, true, true, 0)
@@ -105,12 +113,17 @@ func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	}
 }
 
+// ExecuteCommand executes active command.
 func (w *Widget) ExecuteCommand() {
 	cmd := w.commands[w.active]
 
 	exec.Command(cmd.Name, cmd.Args...).Run()
 }
 
+// OnKeyPress is a callback for key press events. It is intended to be used as
+// follows:
+//
+//	win.Connect("key-press-event", widget.OnKeyPress)
 func (w *Widget) OnKeyPress(_ interface{}, ev *gdk.Event) {
 	event := &gdk.EventKey{
 		Event: ev,
