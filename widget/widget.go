@@ -25,7 +25,7 @@ type Widget struct {
 
 	onEscape func()
 	children []*gtk.Image
-	commands []*config.Command
+	commands []config.Command
 }
 
 // New returns new power menu widget.
@@ -108,7 +108,7 @@ func (w *Widget) unmarkActive() {
 }
 
 // AddOption adds option to the [Widget].
-func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
+func (w *Widget) AddOption(img *gtk.Image, cmd config.Command) {
 	w.total++
 	w.PackStart(img, true, true, 0)
 
