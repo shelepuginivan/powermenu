@@ -122,6 +122,8 @@ func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 
 // ExecuteCommand executes active command.
 func (w *Widget) ExecuteCommand() {
+	w.onEscape()
+
 	cmd := w.commands[w.active]
 
 	exec.Command(cmd.Name, cmd.Args...).Run()
