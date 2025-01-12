@@ -47,7 +47,7 @@ powermenu is fully keyboard controlled. The following table describes supported 
 |                    Quit without doing anything                    |                                   <kbd>Esc</kbd>                                   |
 | Select next option (right or bottom depending on layout settings) |           <kbd>Right</kbd>, <kbd>l</kbd>, <kbd>Down</kbd>, <kbd>j</kbd>            |
 | Select previous option (left or top depending on layout settings) |             <kbd>Left</kbd>, <kbd>h</kbd>, <kbd>Up</kbd>, <kbd>k</kbd>             |
-| Select option by index (depends on the number of enabled options  | <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd>, <kbd>5</kbd>, <kbd>6</kbd> |
+| Select option by index (depends on the number of enabled options) | <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd>, <kbd>5</kbd>, <kbd>6</kbd> |
 
 
 ## Configuration
