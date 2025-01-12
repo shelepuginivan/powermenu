@@ -74,3 +74,8 @@ GtkWindow#powermenu
 
 > [!TIP]
 > Run `GTK_DEBUG=interactive powermenu` to open the debug window.
+
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 &mdash; see [LICENSE.md](https://github.com/shelepuginivan/powermenu/blob/main/LICENSE.md) for details.
