@@ -57,3 +57,20 @@ The [default configuration file](https://github.com/shelepuginivan/powermenu/blo
 The style file of powermenu is located at `$XDG_CONFIG_HOME/powermenu/style.css`, which defaults to `~/.config/powermenu/style.css` on most systems.
 
 While some CSS features are supported, some aren't. See [Overview of CSS in GTK](https://docs.gtk.org/gtk3/css-overview.html) for more information.
+An [example style file](https://github.com/shelepuginivan/powermenu/blob/main/examples/style.css) can be found in `examples/`.
+
+The following diagram describes the widget hierarchy.
+
+```css
+GtkWindow#powermenu
+└─ GtkBox#container
+   ├─ GtkImage#option
+   ├─ GtkImage#option
+   ├─ GtkImage#option
+   ├─ GtkImage#option.active    /* Class .active marks active option. */
+   ├─ GtkImage#option
+   └─ GtkImage#option
+```
+
+> [!TIP]
+> Run `GTK_DEBUG=interactive powermenu` to open the debug window.
