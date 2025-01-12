@@ -26,8 +26,9 @@ layout:
 # This allows you to customize each option, including whether to enable the
 # option, the commands to execute, the order of the options, and more.
 hibernate:
-  enabled: true          # Whether to enabled the option
-  order: 1               # Order of the option. The smaller the value, the left (higher) it will appear.
+  enabled: true    # Whether to enabled the option
+  order: 1    # Order of the option. The smaller the value, the left (higher) it will appear.
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/hibernate.svg" # Icon of the option.
   command:
     name: "systemctl"    # Name of the executable
     args:                # Arguments provided to the executable.
@@ -38,10 +39,12 @@ hibernate:
 lock:
   enabled: true
   order: 2
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/lock.svg"
 
 logout:
   enabled: true
   order: 3
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/logout.svg"
   command:
     name: "pkill"
     args:
@@ -52,18 +55,21 @@ logout:
 poweroff:
   enabled: true
   order: 4
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/poweroff.svg"
   command:
     name: "poweroff"
 
 reboot:
   enabled: true
   order: 5
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/reboot.svg"
   command:
     name: "reboot"
 
 suspend:
   enabled: true
   order: 6
+  icon: "$XDG_CONFIG_HOME/powermenu/icons/suspend.svg"
   command:
     name: "systemctl"
     args:
