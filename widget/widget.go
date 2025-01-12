@@ -124,7 +124,7 @@ func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	w.total++
 	w.PackStart(img, true, true, 0)
 
-	img.SetName("image")
+	img.SetName("option")
 	w.children = append(w.children, img)
 	w.commands = append(w.commands, cmd)
 
