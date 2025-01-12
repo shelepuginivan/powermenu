@@ -1,0 +1,70 @@
+# Set margins for specific edges of the window.
+margins:
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+# Set the edges to which the window will be anchored.
+#
+# - If two perpendicular edges are anchored (e.g. "top" and "left"), the
+#   surface with be anchored to that corner.
+# - If two opposite edges are anchored (e.g. "top" and "bottom"), the window
+#   will be stretched across the screen in that direction.
+anchors:
+  top: false
+  left: false
+  right: false
+  bottom: false
+
+# Set powermenu layout.
+layout:
+  spacing: 12                  # Spacing between options.
+  orientation: "horizontal"    # How to position options. Possible values: "horizontal", "vertical"
+
+# Option configuration.
+# This allows you to customize each option, including whether to enable the
+# option, the commands to execute, the order of the options, and more.
+hibernate:
+  enabled: true          # Whether to enabled the option
+  order: 1               # Order of the option. The smaller the value, the left (higher) it will appear.
+  command:
+    name: "systemctl"    # Name of the executable
+    args:                # Arguments provided to the executable.
+      - "hibernate"
+
+# Notice there is no default command for "lock". There is no generic way to
+# lock session, so it is to be configured by the end user.
+lock:
+  enabled: true
+  order: 2
+
+logout:
+  enabled: true
+  order: 3
+  command:
+    name: "pkill"
+    args:
+      - "-KILL"
+      - "-u"
+      - "$USER"
+
+poweroff:
+  enabled: true
+  order: 4
+  command:
+    name: "poweroff"
+
+reboot:
+  enabled: true
+  order: 5
+  command:
+    name: "reboot"
+
+suspend:
+  enabled: true
+  order: 6
+  command:
+    name: "systemctl"
+    args:
+      - "suspend"
