@@ -1,6 +1,11 @@
 // Package config provides configuration for powermenu.
 package config
 
+import (
+	"os"
+	"os/exec"
+)
+
 type AnchorsConfig struct {
 	Top    bool `yaml:"top"`
 	Bottom bool `yaml:"bottom"`
@@ -23,6 +28,17 @@ type MarginsConfig struct {
 type Command struct {
 	Name string   `yaml:"name"`
 	Args []string `yaml:"args"`
+}
+
+// Execute executes the command.
+func (c Command) Execute() {
+	args := make([]string, len(c.Args))
+
+	for i, arg := range c.Args {
+		args[i] = os.ExpandEnv(arg)
+	}
+
+	exec.Command(c.Name, args...).Run()
 }
 
 type Option struct {

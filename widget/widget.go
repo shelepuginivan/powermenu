@@ -2,7 +2,6 @@
 package widget
 
 import (
-	"os/exec"
 	"sync"
 
 	"github.com/gotk3/gotk3/gdk"
@@ -133,15 +132,6 @@ func (w *Widget) AddOption(img *gtk.Image, cmd *config.Command) {
 	}
 }
 
-// ExecuteCommand executes active command.
-func (w *Widget) ExecuteCommand() {
-	w.onEscape()
-
-	cmd := w.commands[w.active]
-
-	exec.Command(cmd.Name, cmd.Args...).Run()
-}
-
 // OnKeyPress is a callback for key press events. It is intended to be used as
 // follows:
 //
@@ -171,6 +161,7 @@ func (w *Widget) OnKeyPress(_ interface{}, ev *gdk.Event) {
 	case gdk.KEY_6:
 		w.SetActive(5)
 	case gdk.KEY_Return:
-		w.ExecuteCommand()
+		w.onEscape()
+		w.commands[w.active].Execute()
 	}
 }
