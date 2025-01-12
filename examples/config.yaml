@@ -47,7 +47,7 @@ logout:
     args:
       - "-KILL"
       - "-u"
-      - "$USER"
+      - "$USER"    # Environment variables are supported.
 
 poweroff:
   enabled: true
