@@ -1,0 +1,17 @@
+/* The main widget wrapping all the options. */
+#container {
+    background: #232323;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+/* Styles that are applied to all options. */
+#option {
+    padding: 16px;
+}
+
+/* Styles that are applied to the currently active option. */
+#option.active {
+    background-color: #3c3836;
+    border-radius: 12px;
+}
