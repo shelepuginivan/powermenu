@@ -56,6 +56,36 @@ The configuration file of powermenu is located at `$XDG_CONFIG_HOME/powermenu/co
 
 The [default configuration file](https://github.com/shelepuginivan/powermenu/blob/main/examples/config.yaml) can be found in `examples/`.
 
+### Icons
+
+The default location for icons is `$XDG_CONFIG_HOME/powermenu/<action>.svg`, where action is the respective power menu action (e.g. `poweroff`, `suspend`, etc.)
+If icon files don't exist, they will be created and the default icons will be written to the files.
+
+> [!NOTE]
+> Powermenu uses [Carbon Icons](https://github.com/carbon-design-system/carbon) by default.
+
+The following image formats are supported, although this list may vary depending on your system.
+
+- ani
+- png
+- bmp
+- gif
+- ico
+- jpeg
+- pnm
+- tiff
+- xpm
+- xbm
+- tga
+- icns
+- qtif
+- avif
+- heif/avif
+- jxl
+- svg
+
+> [!IMPORTANT]
+> Images are displayed with the same dimensions as the size of the image itself. The default size is 144×144 px.
 
 ## Styling
 
