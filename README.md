@@ -18,6 +18,11 @@ Although it is designed mostly for users of standalone Wayland compositors such 
 
 ## Installation
 
+Requirements:
+
+- Go
+- gtk3 development packages
+
 ```shell
 git clone https://github.com/shelepuginivan/powermenu.git
 cd powermenu
