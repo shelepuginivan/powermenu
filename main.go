@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"sort"
 
 	"github.com/dlasky/gotk3-layershell/layershell"
@@ -83,7 +84,12 @@ func main() {
 	}
 
 	// Allow keyboard input.
-	layershell.SetKeyboardMode(win, layershell.LAYER_SHELL_KEYBOARD_MODE_ON_DEMAND)
+	// If $GTK_DEBUG is set to "interactive", allow focusing the debug window.
+	if os.Getenv("GTK_DEBUG") == "interactive" {
+		layershell.SetKeyboardMode(win, layershell.LAYER_SHELL_KEYBOARD_MODE_ON_DEMAND)
+	} else {
+		layershell.SetKeyboardMode(win, layershell.LAYER_SHELL_KEYBOARD_MODE_EXCLUSIVE)
+	}
 
 	// Recursively show all widgets contained in this window.
 	win.ShowAll()
